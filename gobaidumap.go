@@ -16,7 +16,7 @@ import (
 
 const (
 	// AppKey 百度地图 AppKey
-	AppKey string = "F454f8a5efe5e577997931cc01de3974" // baidu's
+	AppKey string = "uGsp3cCEE0Xlpago59qCN0SMU3MAcmCz" // baidu's
 
 	// reqURLForGEO API URL for GetAddressViaGEO 通过 GEO 坐标信息获取地址
 	reqURLForGEO string = "http://api.map.baidu.com/geocoder/v2/?ak="
@@ -26,10 +26,10 @@ const (
 )
 
 // GetAddressViaGEO 通过 GEO 坐标信息获取地址
-func GetAddressViaGEO(lat, lng string) (*StructGEOToAddress, error) {
+func GetAddressViaGEO(lat, lng, coordtype string) (*StructGEOToAddress, error) {
 	res := new(StructGEOToAddress)
 
-	parameter := fmt.Sprintf("&location=%s,%s&output=json&pois=0", lat, lng)
+	parameter := fmt.Sprintf("&location=%s,%s&output=json&pois=0&coordtype=%s", lat, lng, coordtype)
 	reqURL := fmt.Sprintf("%s%s%s", reqURLForGEO, AppKey, parameter)
 
 	res2, err := requestBaidu("GetAddressViaGEO", reqURL)
